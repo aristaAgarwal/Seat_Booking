@@ -7,6 +7,6 @@ import com.example.seatbooking.R
 class ClearBookingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bookings)
+        setContentView(R.layout.activity_clear_bookings)
     }
 }
