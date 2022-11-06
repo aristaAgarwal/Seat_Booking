@@ -17,11 +17,9 @@
         tools:targetApi="31">
         <activity
             android:name="com.dishIT.seatbooking.activities.LoginActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeatBooking.NoActionBar"/>
         <activity
             android:name="com.dishIT.seatbooking.activities.SeatsBookingActivity"
             android:exported="false"

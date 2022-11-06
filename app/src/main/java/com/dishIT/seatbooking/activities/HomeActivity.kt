@@ -17,16 +17,21 @@ import com.dishIT.seatbooking.model.AuthenticationDO
 import com.dishIT.seatbooking.model.AuthenticationResponse
 import com.dishIT.seatbooking.viewModel.LoginViewModel
 import com.dishIT.seatbooking.viewModel.seatScheduleViewModel
+import com.example.seatbooking.databinding.ActivityHomeBinding
 import com.google.android.material.navigation.NavigationView
 
 class HomeActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     lateinit var navigationView: NavigationView
+    lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        startActivity(Intent(this, LoginActivity::class.java))
         setNavigationMenu()
         init()
         navigationView = findViewById(R.id.navigation_view)
@@ -89,6 +94,9 @@ class HomeActivity : AppCompatActivity() {
         seatBooking.setOnClickListener {
             startActivity(Intent(this, SeatsBookingActivity::class.java))
         }
+//        binding.bookLunch.setOnClickListener {
+//            startActivity(Intent(this, LoginActivity::class.java))
+//        }
     }
 
 }

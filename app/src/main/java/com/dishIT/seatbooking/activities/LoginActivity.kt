@@ -1,8 +1,8 @@
 package com.dishIT.seatbooking.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.dishIT.seatbooking.constants.AppPreferences
 import com.dishIT.seatbooking.model.AuthenticationDO
@@ -11,24 +11,31 @@ import com.dishIT.seatbooking.viewModel.LoginViewModel
 import com.example.seatbooking.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-    var username :String? = null
-    var password :String? = null
+
     lateinit var binding : ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getCredentials()
+        init()
+    }
+
+    fun init(){
+
     }
 
     fun getCredentials(){
-        username = binding.name.text.toString()
-        password = binding.pass.text.toString()
-        if(username != null && password!= null)
-        authenticate(username!!, password!!)
+        val username = binding.name.text
+        val password = binding.pass.text
+        binding.btn.setOnClickListener {
+            authenticate(username.toString(), password.toString())
+        }
     }
 
     fun authenticate(username: String, password: String) {
+        Log.e("jjvj","aa gaye hai  gaya")
+        Log.e("jjvj","$username $password")
         val loginCred = AuthenticationDO(password, username)
         val authenticate by viewModels<LoginViewModel>()
         authenticate.login(loginCred)
@@ -38,8 +45,9 @@ class LoginActivity : AppCompatActivity() {
                 data->
             if(data is AuthenticationResponse){
                 AppPreferences(this).token  = "Bearer "+data.id_token
+                Log.e("jjvj","ho gaya")
+                finish()
             }
         }
-        startActivity(Intent(this, HomeActivity::class.java))
     }
 }
