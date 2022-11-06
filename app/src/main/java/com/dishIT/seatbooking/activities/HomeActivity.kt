@@ -23,12 +23,6 @@ class HomeActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     lateinit var navigationView: NavigationView
-    var spinner :Spinner? = null
-    private val seatScheduleViewModel by viewModels<seatScheduleViewModel>()
-    private lateinit var fromDate: TextView
-    private lateinit var toDate: TextView
-    private var selectedToDate by Delegates.notNull<Long>()
-    private var maxToDate by Delegates.notNull<Long>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,99 +89,6 @@ class HomeActivity : AppCompatActivity() {
         seatBooking.setOnClickListener {
             startActivity(Intent(this, SeatsBookingActivity::class.java))
         }
-        authenticate()
     }
-//
-//    private fun getFromDate(textView: TextView){
-//        val cal = Calendar.getInstance()
-//        val datePickerDialog = DatePickerDialog(
-//            this,
-//            { _, year, monthOfYear, dayOfMonth ->
-//
-//                cal.set(Calendar.YEAR, year)
-//                cal.set(Calendar.MONTH, monthOfYear)
-//                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-//                selectedToDate = cal.timeInMillis
-//                val myFormat = "dd MMM, yyyy"
-//                val sdf = SimpleDateFormat(myFormat, Locale.US)
-//                textView.text = sdf.format(cal.time)
-//            },
-//            Calendar.getInstance().get(Calendar.YEAR),
-//            Calendar.getInstance().get(Calendar.MONTH),
-//            Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-//        )
-//
-//        datePickerDialog.datePicker.minDate = cal.timeInMillis - 1000
-//        cal.add(Calendar.MONTH,1)
-//        maxToDate = cal.timeInMillis
-//        datePickerDialog.datePicker.maxDate = maxToDate
-//        datePickerDialog.show()
-//    }
-//
-//    private fun getToDate(textView: TextView){
-//        val datePickerDialog = DatePickerDialog(
-//            this,
-//            { _, year, monthOfYear, dayOfMonth ->
-//                val cal = Calendar.getInstance()
-//                cal.set(Calendar.YEAR, year)
-//                cal.set(Calendar.MONTH, monthOfYear)
-//                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-//                val myFormat = "dd MMM, yyyy"
-//                val sdf = SimpleDateFormat(myFormat, Locale.US)
-//                textView.text = sdf.format(cal.time)
-//            },
-//            Calendar.getInstance().get(Calendar.YEAR),
-//            Calendar.getInstance().get(Calendar.MONTH),
-//            Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-//        )
-//        datePickerDialog.datePicker.minDate = this.selectedToDate
-//        datePickerDialog.datePicker.maxDate = this.maxToDate
-//        datePickerDialog.show()
-//    }
-//    fun setAdapter(){
-//        var seats: GetSeats? = null
-//        val showSeats = ArrayList<Int>()
-//        getSeatsViewModel.getSeats()
-//        getSeatsViewModel.apiCaller.observe(
-//            this
-//        ){
-//                data->
-//            if(data != null){
-//                seats = data
-//                data.forEach {
-//                    showSeats.add(it.seatName)
-//                    Log.e("MainActiviry", it.toString())
-//                }
-//            }
-//        }
-////        val availableSeats = findViewById<Spinner>(R.id.seats)
-//        val langAdapter = ArrayAdapter<Int>(this,R.layout.spinner_text, showSeats)
-//        langAdapter.setDropDownViewResource(R.layout.spinner_dropdown)
-//        availableSeats?.adapter = langAdapter
-//        val layoutManager = LinearLayoutManager(this)
-//        layoutManager.orientation = LinearLayoutManager.VERTICAL
-////        availableSeats.layoutManager = layoutManager
-////        availableSeats.adapter = seats?.let {
-////            SeatsAdapter(
-////                this,
-////                it
-////            )
-////        }
-//    }
-
-    fun authenticate(){
-        val loginCred = AuthenticationDO("admin","admin")
-        val authenticate by viewModels<LoginViewModel>()
-        authenticate.login(loginCred)
-        authenticate.apiCaller.observe(
-            this
-        ){
-            data->
-            if(data is AuthenticationResponse){
-                AppPreferences(this).token  = "Bearer "+data.id_token
-            }
-        }
-    }
-
 
 }

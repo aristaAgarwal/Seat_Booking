@@ -8,6 +8,12 @@
     android:layout_height="match_parent"
     tools:context="com.dishIT.seatbooking.activities.HomeActivity"
     tools:ignore="HardcodedText">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
