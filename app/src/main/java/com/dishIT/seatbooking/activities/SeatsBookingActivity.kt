@@ -26,7 +26,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.properties.Delegates
 
-class SeatsBookingActivity : AppCompatActivity(), Serializable {
+class SeatsBookingActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySeatsBookingBinding
     var spinner : Spinner? = null
