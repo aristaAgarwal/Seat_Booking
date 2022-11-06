@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SeatBooking"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31" >
+        <activity
+            android:name="com.dishIT.seatbooking.activities.SeatsBookingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_seats_booking"
+            android:theme="@style/Theme.SeatBooking.NoActionBar" />
+        <activity
+            android:name="com.dishIT.seatbooking.activities.MyAccountActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Account" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.dishIT.seatbooking.activities.FeedbackActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Feedback" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.dishIT.seatbooking.activities.EditPremisesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Edit" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.dishIT.seatbooking.activities.MyBookingsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="My Bookings" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.dishIT.seatbooking.activities.ClearBookingsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Clear Bookings" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity android:name="com.dishIT.seatbooking.activities.AvailableSeats"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SeatBooking.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.dishIT.seatbooking.activities.HomeActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:label="Home" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+    </application>
+
+</manifest>
