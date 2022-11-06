@@ -1,18 +1,16 @@
 package com.dishIT.seatbooking.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.dishIT.seatbooking.model.AvailableDatesResponseItem
 import com.example.seatbooking.R
 
 class SeatAvailableDateAdapter(
     private var context: Context,
-    availableDate: ArrayList<AvailableDatesResponseItem>
+    availableDate: List<String>
 ): RecyclerView.Adapter<SeatAvailableDateAdapter.RACItemHolder>()
 {
 
@@ -21,8 +19,8 @@ class SeatAvailableDateAdapter(
 
         private var view: View = v
         val date  = view.findViewById<TextView>(R.id.date)
-        fun bindItem(list: AvailableDatesResponseItem){
-            date.text = list.date
+        fun bindItem(list: String){
+            date.text = list
         }
     }
 

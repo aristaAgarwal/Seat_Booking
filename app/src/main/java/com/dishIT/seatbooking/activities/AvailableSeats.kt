@@ -2,7 +2,6 @@ package com.dishIT.seatbooking.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dishIT.seatbooking.adapter.SeatAvailableDateAdapter
@@ -10,7 +9,6 @@ import com.dishIT.seatbooking.constants.AppPreferences
 import com.dishIT.seatbooking.model.AvailableDatesResponse
 import com.dishIT.seatbooking.model.SeatAvailableDates
 import com.dishIT.seatbooking.viewModel.SeatAvailDatesVM
-import com.example.seatbooking.R
 import com.example.seatbooking.databinding.ActivityAvailableSeatsBinding
 
 class AvailableSeats : AppCompatActivity() {
@@ -18,6 +16,8 @@ class AvailableSeats : AppCompatActivity() {
     var seat: Int? =null
     var startDate: String? =null
     var endDate: String? =null
+    var availableDates = mutableListOf<String>()
+    var bookedDates = mutableListOf<String>()
     lateinit var binding: ActivityAvailableSeatsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,19 +49,25 @@ class AvailableSeats : AppCompatActivity() {
             this
         ){ data->
             if(data is AvailableDatesResponse){
+                data.forEach{
+                    if(it.available)
+                        availableDates.add(it.date)
+                    else
+                        bookedDates.add(it.date)
+                }
                 availableDatesResponse = data
-                setAvailableSeatAdapter(availableDatesResponse)
+                setAvailableSeatAdapter(availableDates)
             }
         }
 
 
     }
 
-    fun setAvailableSeatAdapter(availableDatesResponse: AvailableDatesResponse) {
+    fun setAvailableSeatAdapter(availableDatesResponse: MutableList<String>) {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.AvailableSeats.layoutManager = layoutManager
-        binding.AvailableSeats.adapter = availableDatesResponse?.let {
+        binding.AvailableSeats.adapter = availableDatesResponse.let {
             SeatAvailableDateAdapter(
                 this,
                 it
