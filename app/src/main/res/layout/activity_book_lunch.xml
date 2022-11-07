@@ -177,5 +177,6 @@
         android:text="Submit"
         android:textStyle="bold"
         android:layout_marginHorizontal="35dp"
-        android:layout_marginTop="496dp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="111dp"/>
 </RelativeLayout>
