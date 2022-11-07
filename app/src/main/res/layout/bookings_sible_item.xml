@@ -16,50 +16,76 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="15dp"
                 android:layout_marginHorizontal="10dp"
-                android:orientation="vertical">
+                android:layout_marginVertical="15dp">
 
-                <TextView
-                    android:id="@+id/date"
+
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="October 20th, 2022"
-                    android:textColor="@color/black"/>
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/user_icon"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp">
+                    android:layout_marginHorizontal="10dp"
+                    android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:text="Booked by: "
-                        android:layout_marginEnd="4dp"
+                        android:textSize="16sp"
+                        android:text="Employee Name"
                         android:textColor="@color/black"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp">
 
-                    <TextView
-                        android:id="@+id/username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:text="xyz"
-                        android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:text="Seat:"
+                            android:layout_marginEnd="4dp"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:text="5"
+                            android:layout_marginEnd="4dp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:text=", Date:"
+                            android:layout_marginEnd="4dp"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:id="@+id/username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:text="2022/10/12"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+
                 </LinearLayout>
-
             </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Request"
+                android:text="Remove"
                 android:layout_marginEnd="40dp"
                 android:textAllCaps="false"
                 android:textStyle="bold"
