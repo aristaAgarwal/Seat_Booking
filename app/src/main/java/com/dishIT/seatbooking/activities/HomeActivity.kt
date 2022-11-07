@@ -5,18 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Spinner
-import android.widget.TextView
 import com.example.seatbooking.R
-import kotlin.properties.Delegates
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.activity.viewModels
 import com.dishIT.seatbooking.constants.AppPreferences
-import com.dishIT.seatbooking.model.AuthenticationDO
-import com.dishIT.seatbooking.model.AuthenticationResponse
-import com.dishIT.seatbooking.viewModel.LoginViewModel
-import com.dishIT.seatbooking.viewModel.seatScheduleViewModel
 import com.example.seatbooking.databinding.ActivityHomeBinding
 import com.google.android.material.navigation.NavigationView
 

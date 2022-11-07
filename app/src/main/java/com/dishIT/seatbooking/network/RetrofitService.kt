@@ -5,4 +5,5 @@ class RetrofitService {
     var getfloors = RetrofitBuilder.getInstance().create(GetFloorsTO::class.java)
     var getAuthentication = RetrofitBuilder.getInstance().create(Authanticate::class.java)
     var getSeatAvailableDates = RetrofitBuilder.getInstance().create(SeatAvailableDatesTO::class.java)
+    var scheduleBooking = RetrofitBuilder.getInstance().create(PostScheduleBooking::class.java)
 }

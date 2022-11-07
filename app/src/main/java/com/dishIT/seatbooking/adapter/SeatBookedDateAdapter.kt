@@ -4,36 +4,33 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.dishIT.seatbooking.model.AvailableDatesResponseItem
 import com.example.seatbooking.R
 
-class SeatAvailableDateAdapter(
+class SeatBookedDateAdapter(
     private var context: Context,
-    availableDate: List<String>,
-    var appLinkListener: AppLinkClick
-): RecyclerView.Adapter<SeatAvailableDateAdapter.RACItemHolder>()
+    bookedDate: List<AvailableDatesResponseItem>
+): RecyclerView.Adapter<SeatBookedDateAdapter.RACItemHolder>()
 {
 
-    private var list = availableDate
+    private var list = bookedDate
     inner class RACItemHolder(v: View): RecyclerView.ViewHolder(v){
 
         private var view: View = v
         val date  = view.findViewById<TextView>(R.id.date)
-        val checkbox = view.findViewById<CheckBox>(R.id.checkbox)
-        fun bindItem(list: String){
-            date.text = list
-            checkbox.setOnCheckedChangeListener { compoundButton, b ->
-                appLinkListener.onAppLinkClicked(b, list)
-            }
+        val name = view.findViewById<TextView>(R.id.username)
+        fun bindItem(list: AvailableDatesResponseItem){
+            date.text = list.date
+            name.text = list.bookedUser?.empName
         }
-
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RACItemHolder {
         val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.available_seat_single_item,
-        parent, false)
+            R.layout.booked_seat_single_item,
+            parent, false)
         this.context = parent.context
         return RACItemHolder(view)
     }
@@ -43,8 +40,4 @@ class SeatAvailableDateAdapter(
     }
 
     override fun getItemCount() = list.size
-
-    interface AppLinkClick {
-        fun onAppLinkClicked(isChecked: Boolean, date: String)
-    }
 }
