@@ -16,32 +16,25 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MeetingRoomActivity"
+            android:name="com.dishIT.seatbooking.activities.MeetingRoomActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.MeetingRoomActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activities.LoginActivity"
+            android:name="com.dishIT.seatbooking.activities.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeatBooking.NoActionBar" />
         <activity
-            android:name=".activities.SeatsBookingActivity"
+            android:name="com.dishIT.seatbooking.activities.SeatsBookingActivity"
             android:exported="false"
             android:label="@string/title_activity_seats_booking"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeatBooking.NoActionBar" />
         <activity
-            android:name=".activities.MyAccountActivity"
+            android:name="com.dishIT.seatbooking.activities.MyAccountActivity"
             android:exported="false"
             android:label="Account"
             android:screenOrientation="portrait">
@@ -50,7 +43,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.FeedbackActivity"
+            android:name="com.dishIT.seatbooking.activities.FeedbackActivity"
             android:exported="false"
             android:label="Feedback"
             android:screenOrientation="portrait">
@@ -59,7 +52,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.EditPremisesActivity"
+            android:name="com.dishIT.seatbooking.activities.EditPremisesActivity"
             android:exported="false"
             android:label="Edit"
             android:screenOrientation="portrait">
@@ -68,7 +61,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.MyBookingsActivity"
+            android:name="com.dishIT.seatbooking.activities.MyBookingsActivity"
             android:exported="false"
             android:label="My Bookings"
             android:screenOrientation="portrait">
@@ -77,7 +70,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.ClearBookingsActivity"
+            android:name="com.dishIT.seatbooking.activities.ClearBookingsActivity"
             android:exported="false"
             android:label="Clear Bookings"
             android:screenOrientation="portrait">
@@ -86,12 +79,12 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.AvailableSeats"
+            android:name="com.dishIT.seatbooking.activities.AvailableSeats"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SeatBooking.NoActionBar" />
         <activity
-            android:name=".activities.HomeActivity"
+            android:name="com.dishIT.seatbooking.activities.HomeActivity"
             android:exported="true"
             android:label="Home"
             android:screenOrientation="portrait">

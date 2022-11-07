@@ -7,6 +7,6 @@ import com.example.seatbooking.R
 class EditPremisesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_multi_bookings)
+        setContentView(R.layout.activity_edit_premises)
     }
 }
