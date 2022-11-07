@@ -5,8 +5,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dishIT.seatbooking.adapter.SeatAvailableDateAdapter
+import com.dishIT.seatbooking.adapter.SeatBookedDateAdapter
 import com.dishIT.seatbooking.constants.AppPreferences
 import com.dishIT.seatbooking.model.AvailableDatesResponse
+import com.dishIT.seatbooking.model.AvailableDatesResponseItem
 import com.dishIT.seatbooking.model.SeatAvailableDates
 import com.dishIT.seatbooking.viewModel.SeatAvailDatesVM
 import com.example.seatbooking.databinding.ActivityAvailableSeatsBinding
@@ -41,7 +43,7 @@ class AvailableSeats : AppCompatActivity() {
     }
     private fun getAvailableDates(){
         val availableDatesVM by viewModels<SeatAvailDatesVM>()
-        var availableDatesResponse : AvailableDatesResponse
+        var bookedDatesResponse = mutableListOf<AvailableDatesResponseItem>()
         val seatAvailableDates = SeatAvailableDates(endDate!!,floor!!,seat!!,startDate!!)
 
         availableDatesVM.getSeatSchedule(AppPreferences(this).token, seatAvailableDates)
@@ -52,26 +54,35 @@ class AvailableSeats : AppCompatActivity() {
                 data.forEach{
                     if(it.available)
                         availableDates.add(it.date)
-                    else
-                        bookedDates.add(it.date)
+                    else {
+                        bookedDatesResponse.add(it)
+                    }
                 }
-                availableDatesResponse = data
                 setAvailableSeatAdapter(availableDates)
+                setBookedSeatAdapter(bookedDatesResponse)
             }
         }
 
 
     }
 
+    fun setBookedSeatAdapter(bookedDatesResponse: MutableList<AvailableDatesResponseItem>) {
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.BookedSeats.layoutManager = layoutManager
+        binding.BookedSeats.adapter = SeatBookedDateAdapter(
+            this,
+            bookedDatesResponse
+        )
+    }
+
     fun setAvailableSeatAdapter(availableDatesResponse: MutableList<String>) {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.AvailableSeats.layoutManager = layoutManager
-        binding.AvailableSeats.adapter = availableDatesResponse.let {
-            SeatAvailableDateAdapter(
-                this,
-                it
-            )
-        }
+        binding.AvailableSeats.adapter = SeatAvailableDateAdapter(
+            this,
+            availableDatesResponse
+        )
     }
 }
