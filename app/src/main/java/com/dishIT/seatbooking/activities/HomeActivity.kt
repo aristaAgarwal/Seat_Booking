@@ -30,8 +30,10 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        startActivity(Intent(this, LoginActivity::class.java))
+        if(AppPreferences(this).firstLaunch){
+            startActivity(Intent(this, LoginActivity::class.java))
+            AppPreferences(this).firstLaunch = false
+        }
         setNavigationMenu()
         init()
         navigationView = findViewById(R.id.navigation_view)
@@ -97,6 +99,9 @@ class HomeActivity : AppCompatActivity() {
 //        binding.bookLunch.setOnClickListener {
 //            startActivity(Intent(this, LoginActivity::class.java))
 //        }
+        binding.reserveMeetingRoom.setOnClickListener {
+            startActivity(Intent(this, MeetingRoomActivity::class.java))
+        }
     }
 
 }
