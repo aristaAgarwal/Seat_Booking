@@ -96,12 +96,14 @@ class HomeActivity : AppCompatActivity() {
         seatBooking.setOnClickListener {
             startActivity(Intent(this, SeatsBookingActivity::class.java))
         }
-//        binding.bookLunch.setOnClickListener {
-//            startActivity(Intent(this, LoginActivity::class.java))
-//        }
+        binding.bookLunch.setOnClickListener {
+            startActivity(Intent(this, BookLunchActivity::class.java))
+        }
         binding.reserveMeetingRoom.setOnClickListener {
             startActivity(Intent(this, MeetingRoomActivity::class.java))
         }
+
+
     }
 
 }
