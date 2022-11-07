@@ -16,6 +16,12 @@
     <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
     </style>
 
+    <style name="CardView_1" parent="Widget.MaterialComponents.CardView">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">@dimen/cardview_default_elevation</item>
+    </style>
     <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
     </style>
     <style name="Theme.SeatBooking.NoActionBar">
