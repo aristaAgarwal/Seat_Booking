@@ -99,6 +99,9 @@ class HomeActivity : AppCompatActivity() {
 //        binding.bookLunch.setOnClickListener {
 //            startActivity(Intent(this, LoginActivity::class.java))
 //        }
+        binding.reserveMeetingRoom.setOnClickListener {
+            startActivity(Intent(this, MeetingRoomActivity::class.java))
+        }
     }
 
 }
