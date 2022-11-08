@@ -146,4 +146,15 @@
             layout="@layout/booked_succesfully_popup" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/request_seat_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/success_popup"
+            layout="@layout/request_seat_popup" />
+    </RelativeLayout>
+
 </RelativeLayout>

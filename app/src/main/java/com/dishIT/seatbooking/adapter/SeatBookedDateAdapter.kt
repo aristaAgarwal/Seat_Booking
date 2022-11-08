@@ -11,7 +11,8 @@ import com.example.seatbooking.R
 
 class SeatBookedDateAdapter(
     private var context: Context,
-    bookedDate: List<AvailableDatesResponseItem>
+    bookedDate: List<AvailableDatesResponseItem>,
+    var appLinkListener: AppLinkClick
 ): RecyclerView.Adapter<SeatBookedDateAdapter.RACItemHolder>()
 {
 
@@ -21,9 +22,13 @@ class SeatBookedDateAdapter(
         private var view: View = v
         val date  = view.findViewById<TextView>(R.id.date)
         val name = view.findViewById<TextView>(R.id.username)
+        val requestBtn  = view.findViewById<TextView>(R.id.request)
         fun bindItem(list: AvailableDatesResponseItem){
             date.text = list.date
             name.text = list.bookedUser?.empName
+            requestBtn.setOnClickListener {
+                appLinkListener.onAppLinkClicked(list.bookedUser!!.empId, list.bookedUser.empName)
+            }
         }
     }
 
@@ -40,4 +45,8 @@ class SeatBookedDateAdapter(
     }
 
     override fun getItemCount() = list.size
+
+    interface AppLinkClick {
+        fun onAppLinkClicked(id: String, name: String)
+    }
 }

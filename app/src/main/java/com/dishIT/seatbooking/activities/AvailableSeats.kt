@@ -14,7 +14,7 @@ import com.dishIT.seatbooking.viewModel.ScheduleBookingVM
 import com.dishIT.seatbooking.viewModel.SeatAvailDatesVM
 import com.example.seatbooking.databinding.ActivityAvailableSeatsBinding
 
-class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClick {
+class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClick, SeatBookedDateAdapter.AppLinkClick {
     var floor: Int? =null
     var seat: Int? =null
     var startDate: String? =null
@@ -94,7 +94,8 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
         binding.BookedSeats.layoutManager = layoutManager
         binding.BookedSeats.adapter = SeatBookedDateAdapter(
             this,
-            bookedDatesResponse
+            bookedDatesResponse,
+            this
         )
     }
 
@@ -117,4 +118,9 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
             binding.btn.isEnabled = (bookedDates.size>0)
 
     }
+
+    override fun onAppLinkClicked(id: String, name: String) {
+
+    }
+
 }
