@@ -1,8 +1,10 @@
 package com.dishIT.seatbooking.activities
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.RelativeLayout
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,16 +39,30 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
         getAvailableDates()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun init(){
         binding.backArrow.setOnClickListener {
             onBackPressed()
         }
         binding.btn.setOnClickListener {
             scheduleBooking()
-            binding.bookingConfirmLayout.isVisible = true
-            binding.bookingConfirmLayout.isClickable = true
-            binding.bookingConfirmLayout.isFocusable = true
-
+            binding.successPopup.seatNo.text = "F"+floor.toString() +"-"+ seat.toString()
+            setPopup(true,binding.bookingConfirmLayout)
+        }
+        binding.successPopup.cross.setOnClickListener {
+            setPopup(false, binding.bookingConfirmLayout)
+        }
+        binding.successPopup.btn.setOnClickListener {
+            setPopup(false, binding.bookingConfirmLayout)
+        }
+        binding.requestPopup.cross.setOnClickListener {
+            setPopup(false, binding.requestSeatLayout)
+        }
+        binding.requestPopup.cancelButton.setOnClickListener {
+            setPopup(false, binding.requestSeatLayout)
+        }
+        binding.requestPopup.submit.setOnClickListener {
+            setPopup(false, binding.requestSeatLayout)
         }
     }
     fun scheduleBooking(){
@@ -65,7 +81,7 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
     }
     private fun getAvailableDates(){
         val availableDatesVM by viewModels<SeatAvailDatesVM>()
-        var bookedDatesResponse = mutableListOf<AvailableDatesResponseItem>()
+        val bookedDatesResponse = mutableListOf<AvailableDatesResponseItem>()
         val seatAvailableDates = SeatAvailableDates(endDate!!,floor!!,seat!!,startDate!!)
 
         availableDatesVM.getSeatSchedule(AppPreferences(this).token, seatAvailableDates)
@@ -120,7 +136,15 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
     }
 
     override fun onAppLinkClicked(id: String, name: String) {
-
+        binding.requestPopup.ownerName.text = name
+        binding.requestPopup.empid.text = id
+        setPopup(true, binding.requestSeatLayout)
     }
 
+    private fun setPopup(b: Boolean, layout: RelativeLayout){
+
+        layout.isVisible = b
+        layout.isClickable = b
+        layout.isFocusable = b
+    }
 }
