@@ -2,8 +2,6 @@ package com.dishIT.seatbooking.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.seatbooking.R
 import com.example.seatbooking.databinding.ActivityEditPremisesBinding
