@@ -47,9 +47,10 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
     }
     fun scheduleBooking(){
         val scheduleBookingVM by viewModels<ScheduleBookingVM>()
+        val pref = AppPreferences(this)
         val bookedDates  = bookedDates.toString().replace("[","").replace("]","")
-        val scheduleBooking = ScheduleBooking("Arista","919",floor.toString(),"DAY",1,1,seat.toString(),bookedDates)
-        scheduleBookingVM.bookSchedule(AppPreferences(this).token,scheduleBooking)
+        val scheduleBooking = ScheduleBooking(pref.empId,pref.userName,floor.toString(),"DAY",1,1,seat.toString(),bookedDates)
+        scheduleBookingVM.bookSchedule(pref.token,scheduleBooking)
         scheduleBookingVM.apiCaller.observe(
             this
         ){data  ->

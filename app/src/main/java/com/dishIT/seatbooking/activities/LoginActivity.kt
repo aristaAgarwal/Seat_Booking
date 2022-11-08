@@ -46,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
             if(data is AuthenticationResponse){
                 AppPreferences(this).token  = "Bearer "+data.id_token
                 Log.e("jjvj","ho gaya")
+                AppPreferences(this).firstLaunch = false
                 finish()
             }
         }

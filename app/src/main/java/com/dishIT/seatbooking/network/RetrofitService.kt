@@ -7,4 +7,5 @@ class RetrofitService {
     var getSeatAvailableDates = RetrofitBuilder.getInstance().create(SeatAvailableDatesTO::class.java)
     var scheduleBooking = RetrofitBuilder.getInstance().create(PostScheduleBooking::class.java)
     var myBookings = RetrofitBuilder.getInstance().create(MyBookingsTO::class.java)
+    var getAccount = RetrofitBuilder.getInstance().create(GetAccount::class.java)
 }

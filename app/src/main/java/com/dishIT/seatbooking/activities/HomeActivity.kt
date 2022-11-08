@@ -3,12 +3,16 @@ package com.dishIT.seatbooking.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import com.example.seatbooking.R
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.dishIT.seatbooking.constants.AppPreferences
+import com.dishIT.seatbooking.model.GetAccount
+import com.dishIT.seatbooking.viewModel.GetAccountVM
 import com.example.seatbooking.databinding.ActivityHomeBinding
 import com.google.android.material.navigation.NavigationView
 
@@ -22,10 +26,11 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Log.e("jkgg",AppPreferences(this).firstLaunch.toString())
         if(AppPreferences(this).firstLaunch){
             startActivity(Intent(this, LoginActivity::class.java))
-            AppPreferences(this).firstLaunch = false
         }
+        getAccount()
         setNavigationMenu()
         init()
         navigationView = findViewById(R.id.navigation_view)
@@ -60,7 +65,24 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
-
+    fun getAccount(){
+        val getAccount by viewModels<GetAccountVM>()
+        val pref = AppPreferences(this)
+        getAccount.getAccount(pref.token)
+        getAccount.apiCaller.observe(
+            this
+        ){data->
+            if(data is GetAccount){
+                pref.userName = data.login
+                pref.empId = data.id
+                pref.emailId = data.email
+                pref.authorities = if(data.authorities.size > 1)
+                    data.authorities[1]
+                else
+                    data.authorities[0]
+            }
+        }
+    }
     private fun setNavigationMenu(){
 
         drawerLayout = findViewById(R.id.my_drawer_layout)

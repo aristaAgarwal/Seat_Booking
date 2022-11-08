@@ -72,9 +72,6 @@ public class AppPreferences {
         editor.commit();
     }
 
-    /**
-     * Get chosen email-id used while creating or forgot password/username
-     */
     public String getUserName() {
         String username = "";
         try {
@@ -82,6 +79,36 @@ public class AppPreferences {
         } catch (Exception ex) {
         }
         return username;
+    }
+
+    public void setEmpId(String empId) {
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString(PreferenceNames.EMP_ID, empId);
+        editor.commit();
+    }
+
+    public String getEmpId() {
+        String empId = "";
+        try {
+            empId= sharedPrefs.getString(PreferenceNames.EMP_ID, "");
+        } catch (Exception ex) {
+        }
+        return empId;
+    }
+
+    public String getAuthorities() {
+        String username = "";
+        try {
+            username = sharedPrefs.getString(PreferenceNames.AUTHORITIES, "");
+        } catch (Exception ex) {
+        }
+        return username;
+    }
+
+    public void setAuthorities(String empId) {
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString(PreferenceNames.AUTHORITIES, empId);
+        editor.commit();
     }
 
     public void setFirstLaunch(Boolean isFirstLaunch) {
@@ -108,7 +135,9 @@ public class AppPreferences {
 
             private static final String CREATE_EMAIL_ID = "CREATE_EMAIL_ID";
 
-            private static final String USER_NAME = "USER_NAME";;
+            private static final String USER_NAME = "USER_NAME";
+            private static final String EMP_ID = "EMP_ID";
+            private static final String AUTHORITIES = "AUTHORITIES";
         }
 
 
