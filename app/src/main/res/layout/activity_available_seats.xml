@@ -134,10 +134,10 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/success_layout"
+        android:id="@+id/booking_confirm_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone">
+        >
 
         <include
             android:id="@+id/success_popup"

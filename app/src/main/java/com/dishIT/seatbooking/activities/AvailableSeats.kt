@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dishIT.seatbooking.adapter.SeatAvailableDateAdapter
 import com.dishIT.seatbooking.adapter.SeatBookedDateAdapter
@@ -42,6 +43,10 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
         }
         binding.btn.setOnClickListener {
             scheduleBooking()
+            binding.bookingConfirmLayout.isVisible = true
+            binding.bookingConfirmLayout.isClickable = true
+            binding.bookingConfirmLayout.isFocusable = true
+
         }
     }
     fun scheduleBooking(){
