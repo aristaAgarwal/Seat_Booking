@@ -14,6 +14,7 @@ import com.dishIT.seatbooking.constants.AppPreferences
 import com.dishIT.seatbooking.fragment.AvailableSeatsFragment
 import com.dishIT.seatbooking.model.GetAvailableSeatsDO
 import com.dishIT.seatbooking.model.GetAvailableSeatsResponseDO
+import com.dishIT.seatbooking.model.GetFloors
 import com.dishIT.seatbooking.model.SeatAvailableDates
 import com.dishIT.seatbooking.viewModel.GetFloorsViewModel
 import com.dishIT.seatbooking.viewModel.seatScheduleViewModel
@@ -149,10 +150,12 @@ class SeatsBookingActivity : AppCompatActivity() {
         getFloorsViewModel.apiCaller.observe(
             this
         ){ data->
-            data.forEach{
-                floors.add(it.floorName)
+            if(data is GetFloors){
+                data.forEach {
+                    floors.add(it.floorName)
+                }
+                setFloors()
             }
-            setFloors()
         }
     }
 
