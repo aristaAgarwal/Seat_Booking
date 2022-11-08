@@ -1,6 +1,7 @@
 package com.dishIT.seatbooking.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dishIT.seatbooking.adapter.SeatAvailableDateAdapter
 import com.dishIT.seatbooking.adapter.SeatBookedDateAdapter
+import com.dishIT.seatbooking.adapter.bookindDates
 import com.dishIT.seatbooking.constants.AppPreferences
 import com.dishIT.seatbooking.model.*
 import com.dishIT.seatbooking.viewModel.ScheduleBookingVM
@@ -47,6 +49,13 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
         binding.btn.setOnClickListener {
             scheduleBooking()
             binding.successPopup.seatNo.text = "F"+floor.toString() +"-"+ seat.toString()
+            val layoutManager = LinearLayoutManager(this)
+            layoutManager.orientation = LinearLayoutManager.VERTICAL
+            binding.successPopup.bookingDates.layoutManager = layoutManager
+            binding.successPopup.bookingDates.adapter = bookindDates(
+                this,
+                bookedDates.toList()
+            )
             setPopup(true,binding.bookingConfirmLayout)
         }
         binding.successPopup.cross.setOnClickListener {
@@ -54,6 +63,7 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
         }
         binding.successPopup.btn.setOnClickListener {
             setPopup(false, binding.bookingConfirmLayout)
+            startActivity(Intent(this,HomeActivity::class.java))
         }
         binding.requestPopup.cross.setOnClickListener {
             setPopup(false, binding.requestSeatLayout)
