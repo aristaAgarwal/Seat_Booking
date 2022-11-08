@@ -14,6 +14,7 @@ class EditPremisesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityEditPremisesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setFloors()
     }
     private fun setFloors(){
         val locations = arrayOf("1", "2","3","4")

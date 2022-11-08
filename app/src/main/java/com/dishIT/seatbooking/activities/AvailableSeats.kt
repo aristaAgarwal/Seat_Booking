@@ -41,7 +41,6 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
             onBackPressed()
         }
         binding.btn.setOnClickListener {
-            Log.e("AvailableSeates", bookedDates.toString())
             scheduleBooking()
         }
     }
