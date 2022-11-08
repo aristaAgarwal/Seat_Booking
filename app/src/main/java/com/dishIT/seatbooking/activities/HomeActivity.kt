@@ -26,7 +26,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Log.e("jkgg",AppPreferences(this).firstLaunch.toString())
         if(AppPreferences(this).firstLaunch){
             startActivity(Intent(this, LoginActivity::class.java))
         }

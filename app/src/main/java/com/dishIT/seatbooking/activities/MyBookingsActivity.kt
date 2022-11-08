@@ -1,5 +1,6 @@
 package com.dishIT.seatbooking.activities
 
+import android.content.Intent
 import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -43,6 +44,8 @@ class MyBookingsActivity : AppCompatActivity() {
 
 
     private fun setOnClickListener() {
-
+        binding.btn.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
+        }
     }
 }
