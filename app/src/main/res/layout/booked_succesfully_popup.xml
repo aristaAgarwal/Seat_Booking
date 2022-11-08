@@ -2,14 +2,102 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B9B9B9">
+    android:background="#99000000">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_marginHorizontal="60dp"
+        android:background="#F8F8F9"
         style="@style/CardView_1"
         android:padding="12dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginHorizontal="17dp"
+            android:layout_marginVertical="10dp"
+            android:src="@drawable/close"
+            android:layout_marginTop="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="17dp"
+            android:layout_marginVertical="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hurray!"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="18dp"
+                android:background="@color/grey"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Booked Successfully!"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/seat_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seat No.: 5"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="10dp"
+                android:textSize="14dp"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date:"
+                    android:layout_marginStart="44dp"
+                    android:textSize="14dp"
+                    android:textColor="@color/black"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/booking_dates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:nestedScrollingEnabled="true"
+                    android:layout_marginStart="28dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/red_border"
+                android:text="Continue"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="55dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="33dp"/>
+
+        </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
