@@ -41,14 +41,12 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
         binding.backArrow.setOnClickListener {
             onBackPressed()
         }
-        if(bookedDates.size > 0){
-            binding.btn.setOnClickListener {
-                scheduleBooking()
-                binding.bookingConfirmLayout.isVisible = true
-                binding.bookingConfirmLayout.isClickable = true
-                binding.bookingConfirmLayout.isFocusable = true
+        binding.btn.setOnClickListener {
+            scheduleBooking()
+            binding.bookingConfirmLayout.isVisible = true
+            binding.bookingConfirmLayout.isClickable = true
+            binding.bookingConfirmLayout.isFocusable = true
 
-            }
         }
     }
     fun scheduleBooking(){
@@ -116,5 +114,7 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
             bookedDates.add(date)
         else
             bookedDates.remove(date)
+            binding.btn.isEnabled = (bookedDates.size>0)
+
     }
 }
