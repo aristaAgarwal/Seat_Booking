@@ -57,18 +57,19 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/request"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Request"
-                android:layout_marginEnd="40dp"
-                android:textAllCaps="false"
-                android:textStyle="bold"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:textColor="@color/black"
+                android:layout_marginEnd="40dp"
                 android:background="@drawable/red_border"
+                android:paddingHorizontal="15dp"
                 android:paddingVertical="7dp"
-                android:paddingHorizontal="15dp"/>
+                android:text="Request"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
 
         </RelativeLayout>
