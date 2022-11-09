@@ -28,6 +28,9 @@ class MeetingRoomActivity : AppCompatActivity() {
         binding.toTimePicker.setOnClickListener {
             pickToTime(binding.toTimePicker)
         }
+        binding.backArrow.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setCapacity(){

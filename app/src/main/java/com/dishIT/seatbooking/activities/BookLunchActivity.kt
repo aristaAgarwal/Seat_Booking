@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.*
 import androidx.core.view.isVisible
 import com.example.seatbooking.R
+import com.example.seatbooking.databinding.ActivityBookLunchBinding
 
 class BookLunchActivity : AppCompatActivity() {
     lateinit var parkingCheckBox: CheckBox
@@ -15,9 +16,11 @@ class BookLunchActivity : AppCompatActivity() {
     lateinit var chooseMeal: LinearLayout
     lateinit var radio4Wheeler: RadioButton
     lateinit var radio2Wheeler: RadioButton
+    lateinit var binding : ActivityBookLunchBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_book_lunch)
+        binding = ActivityBookLunchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         parkingCheckBox = findViewById(R.id.parking_checkbox)
         foodCheckBox = findViewById(R.id.food_checkbox)
@@ -38,6 +41,12 @@ class BookLunchActivity : AppCompatActivity() {
 
         foodCheckBox.setOnCheckedChangeListener { compoundButton, b ->
             chooseMeal.isVisible = b
+        }
+        binding.backArrow.setOnClickListener {
+            onBackPressed()
+        }
+        binding.btn.setOnClickListener {
+            finish()
         }
     }
 }

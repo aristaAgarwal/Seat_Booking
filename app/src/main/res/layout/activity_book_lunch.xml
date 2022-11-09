@@ -8,6 +8,34 @@
     tools:context="com.dishIT.seatbooking.activities.BookLunchActivity">
 
     <LinearLayout
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contentDescription="back arrow"
+            android:focusable="true"
+            android:paddingEnd="16dp"
+            android:src="@drawable/ic_back_arrow" />
+
+        <TextView
+            android:id="@+id/tv_actionbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Parking Space / Food"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/parking_and_food"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -171,12 +199,13 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginBottom="111dp"
         android:background="@drawable/red_border"
         android:text="Submit"
-        android:textStyle="bold"
-        android:layout_marginHorizontal="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="111dp"/>
+        android:textStyle="bold" />
 </RelativeLayout>
