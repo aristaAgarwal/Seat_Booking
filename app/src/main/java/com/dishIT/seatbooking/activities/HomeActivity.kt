@@ -105,6 +105,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun init(){
+        binding.username.text = AppPreferences(this).userName
         val seatBooking = findViewById<View>(R.id.seat_booking)
         seatBooking.setOnClickListener {
             startActivity(Intent(this, SeatsBookingActivity::class.java))

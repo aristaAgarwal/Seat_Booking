@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.dishIT.seatbooking.constants.AppPreferences
 import com.dishIT.seatbooking.model.AuthenticationDO
 import com.dishIT.seatbooking.model.AuthenticationResponse
+import com.dishIT.seatbooking.model.RegisterAccount
 import com.dishIT.seatbooking.viewModel.LoginViewModel
+import com.dishIT.seatbooking.viewModel.RegisterVM
 import com.example.seatbooking.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -23,6 +26,21 @@ class LoginActivity : AppCompatActivity() {
 
     fun init(){
 
+        binding.signUp.setOnClickListener {
+            binding.signIn.isVisible = false
+            binding.detail.isVisible = false
+            binding.register.isVisible = true
+            var username = binding.newName.text
+            val empId = binding.empid.text
+            val email = binding.email.text
+            val pass = binding.newPassConf.text
+            registerAccount(username as String,empId as String,email as String,pass as String)
+        }
+    }
+
+    fun registerAccount(username: String, empId: String, email: String, pass: String) {
+        val registerDO = RegisterAccount(email,username,empId,username, pass)
+        val registerVM by viewModels<RegisterVM>()
     }
 
     fun getCredentials(){
