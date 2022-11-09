@@ -1,17 +1,14 @@
 package com.dishIT.seatbooking.network
 
-import com.dishIT.seatbooking.model.GetAvailableSeatsDO
-import com.dishIT.seatbooking.model.GetAvailableSeatsResponseDO
+import com.dishIT.seatbooking.model.GetSeats
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface SeatScheduleTO {
 
-    @POST("getavailableseats")
+    @GET("getseats/{path}")
     suspend fun getAvailableSeats(
         @Header("Authorization") token: String,
-        @Body requestTO: GetAvailableSeatsDO
-    ): Response<GetAvailableSeatsResponseDO>
+        @Path("path") path: String
+    ): Response<GetSeats>
 }

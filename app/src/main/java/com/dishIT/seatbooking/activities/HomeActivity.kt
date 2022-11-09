@@ -29,7 +29,6 @@ class HomeActivity : AppCompatActivity() {
         if(AppPreferences(this).firstLaunch){
             startActivity(Intent(this, LoginActivity::class.java))
         }
-        getAccount()
         setNavigationMenu()
         init()
         navigationView = findViewById(R.id.navigation_view)
@@ -64,24 +63,6 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
-    fun getAccount(){
-        val getAccount by viewModels<GetAccountVM>()
-        val pref = AppPreferences(this)
-        getAccount.getAccount(pref.token)
-        getAccount.apiCaller.observe(
-            this
-        ){data->
-            if(data is GetAccount){
-                pref.userName = data.login
-                pref.empId = data.id
-                pref.emailId = data.email
-                pref.authorities = if(data.authorities.size > 1)
-                    data.authorities[1]
-                else
-                    data.authorities[0]
-            }
-        }
-    }
     private fun setNavigationMenu(){
 
         drawerLayout = findViewById(R.id.my_drawer_layout)
@@ -105,9 +86,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun init(){
-        binding.username.text = AppPreferences(this).userName
-        val seatBooking = findViewById<View>(R.id.seat_booking)
-        seatBooking.setOnClickListener {
+
+        if (AppPreferences(this).userName != null) {
+            binding.username.text = AppPreferences(this).userName.uppercase()
+        }
+        binding.seatBooking.setOnClickListener {
             startActivity(Intent(this, SeatsBookingActivity::class.java))
         }
         binding.bookLunch.setOnClickListener {

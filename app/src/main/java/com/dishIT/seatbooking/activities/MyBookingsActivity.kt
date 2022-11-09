@@ -4,15 +4,18 @@ import android.content.Intent
 import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
+import androidx.core.view.isEmpty
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dishIT.seatbooking.adapter.MyBookingsAdapter
 import com.dishIT.seatbooking.constants.AppPreferences
+import com.dishIT.seatbooking.model.DeleteBookingDO
 import com.dishIT.seatbooking.model.MyBookings
 import com.dishIT.seatbooking.viewModel.MyBookingsVM
 import com.example.seatbooking.databinding.ActivityMyBookingsBinding
 
-class MyBookingsActivity : AppCompatActivity() {
+class MyBookingsActivity : AppCompatActivity(), MyBookingsAdapter.AppLinkClick {
     lateinit var binding : ActivityMyBookingsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +41,8 @@ class MyBookingsActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.myBookings.layoutManager = layoutManager
-        binding.myBookings.adapter = MyBookingsAdapter(this, data)
+        binding.myBookings.adapter?.notifyDataSetChanged()
+        binding.myBookings.adapter = MyBookingsAdapter(this, data, this)
 
     }
 
@@ -47,5 +51,17 @@ class MyBookingsActivity : AppCompatActivity() {
         binding.btn.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
         }
+    }
+
+    override fun onAppLinkClicked(id: String, date: String) {
+        val myBookingVM  by viewModels<MyBookingsVM>()
+        val deleteBookinDO = DeleteBookingDO(id,date)
+        myBookingVM.deleteBookings(AppPreferences(this).token,deleteBookinDO)
+        myBookingVM.dapiCaller.observe(
+            this
+        ){data->
+
+        }
+        getMyBookings()
     }
 }

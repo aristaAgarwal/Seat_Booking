@@ -9,19 +9,13 @@ import android.view.View
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.NavHostFragment
 import com.dishIT.seatbooking.constants.AppPreferences
-import com.dishIT.seatbooking.fragment.AvailableSeatsFragment
-import com.dishIT.seatbooking.model.GetAvailableSeatsDO
-import com.dishIT.seatbooking.model.GetAvailableSeatsResponseDO
 import com.dishIT.seatbooking.model.GetFloors
-import com.dishIT.seatbooking.model.SeatAvailableDates
+import com.dishIT.seatbooking.model.GetSeats
 import com.dishIT.seatbooking.viewModel.GetFloorsViewModel
 import com.dishIT.seatbooking.viewModel.seatScheduleViewModel
 import com.example.seatbooking.R
 import com.example.seatbooking.databinding.ActivitySeatsBookingBinding
-import org.w3c.dom.Text
-import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -124,22 +118,18 @@ class SeatsBookingActivity : AppCompatActivity() {
     private fun getSeats() {
 
         val getSeatsViewModel by viewModels<seatScheduleViewModel>()
-        val seatScheduleDO = GetAvailableSeatsDO(
-            binding.startDate.text as String
-            ,selectedFloor
-            ,binding.endDate.text  as String
-        )
-        getSeatsViewModel.getSeatSchedule(token ,seatScheduleDO)
+        Log.e("jjgugkj",selectedFloor.toString())
+        getSeatsViewModel.getSeatSchedule(token, "$selectedFloor")
         getSeatsViewModel.apiCaller.observe(
             this
         ) { data ->
-            if (data is GetAvailableSeatsResponseDO) {
+            if (data is GetSeats) {
                 val showSeats = ArrayList<Int>()
                 data.forEach {
-                    showSeats.add(it.seat.seatName)
+                    showSeats.add(it.seatName)
                 }
                 setSeats(showSeats)
-
+                Log.e("bjhgjkgkjg",showSeats.toString())
             }
         }
     }
@@ -170,6 +160,7 @@ class SeatsBookingActivity : AppCompatActivity() {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedFloor = floors[position]
+                getSeats()
             }
 
         }
@@ -238,7 +229,6 @@ class SeatsBookingActivity : AppCompatActivity() {
                 val myFormat = "yyyy-MM-dd"
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 textView.text = sdf.format(cal.time)
-                getSeats()
             },
             Calendar.getInstance().get(Calendar.YEAR),
             Calendar.getInstance().get(Calendar.MONTH),

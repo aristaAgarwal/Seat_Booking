@@ -8,7 +8,9 @@ import androidx.core.view.isVisible
 import com.dishIT.seatbooking.constants.AppPreferences
 import com.dishIT.seatbooking.model.AuthenticationDO
 import com.dishIT.seatbooking.model.AuthenticationResponse
+import com.dishIT.seatbooking.model.GetAccount
 import com.dishIT.seatbooking.model.RegisterAccount
+import com.dishIT.seatbooking.viewModel.GetAccountVM
 import com.dishIT.seatbooking.viewModel.LoginViewModel
 import com.dishIT.seatbooking.viewModel.RegisterVM
 import com.example.seatbooking.databinding.ActivityLoginBinding
@@ -64,8 +66,27 @@ class LoginActivity : AppCompatActivity() {
             if(data is AuthenticationResponse){
                 AppPreferences(this).token  = "Bearer "+data.id_token
                 Log.e("jjvj","ho gaya")
+                getAccount()
                 AppPreferences(this).firstLaunch = false
                 finish()
+            }
+        }
+    }
+    fun getAccount(){
+        val getAccount by viewModels<GetAccountVM>()
+        val pref = AppPreferences(this)
+        getAccount.getAccount(pref.token)
+        getAccount.apiCaller.observe(
+            this
+        ){data->
+            if(data is GetAccount){
+                pref.userName = data.login
+                pref.empId = data.id
+                pref.emailId = data.email
+                pref.authorities = if(data.authorities.size > 1)
+                    data.authorities[1]
+                else
+                    data.authorities[0]
             }
         }
     }

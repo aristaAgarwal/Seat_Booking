@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dishIT.seatbooking.model.MyBookings
@@ -12,7 +13,8 @@ import com.example.seatbooking.R
 
 class MyBookingsAdapter(
     var context: Context,
-    val paymentMethods: MyBookings
+    val paymentMethods: MyBookings,
+    var appLinkListener: AppLinkClick
 ) :
 RecyclerView.Adapter<MyBookingsAdapter.RACItemHolder>() {
 
@@ -21,10 +23,14 @@ RecyclerView.Adapter<MyBookingsAdapter.RACItemHolder>() {
         val seat = view.findViewById<TextView>(R.id.seatNo)
         val floor = view.findViewById<TextView>(R.id.floor)
         val date = view.findViewById<TextView>(R.id.date)
+        val delete = view.findViewById<ImageView>(R.id.delete)
         fun bindItem(list: MyBookingsItem){
             seat.text = list.seatName.toString()
             date.text = list.occurrenceDate
             floor.text = list.floorName.toString()
+            delete.setOnClickListener {
+                appLinkListener.onAppLinkClicked(list.empId, list.occurrenceDate)
+            }
         }
     }
 
@@ -42,4 +48,7 @@ RecyclerView.Adapter<MyBookingsAdapter.RACItemHolder>() {
 
     override fun getItemCount() = paymentMethods.size
 
+    interface AppLinkClick {
+        fun onAppLinkClicked(id: String, date: String)
+    }
 }

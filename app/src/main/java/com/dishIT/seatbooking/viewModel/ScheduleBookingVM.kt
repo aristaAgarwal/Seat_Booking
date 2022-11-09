@@ -5,8 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dishIT.seatbooking.model.GetAvailableSeatsDO
-import com.dishIT.seatbooking.model.GetAvailableSeatsResponseDO
 import com.dishIT.seatbooking.model.ScheduleBooking
 import com.dishIT.seatbooking.model.ScheduleBookingResponse
 import com.dishIT.seatbooking.network.RetrofitService
