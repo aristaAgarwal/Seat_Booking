@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.view.isEmpty
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dishIT.seatbooking.adapter.MyBookingsAdapter
 import com.dishIT.seatbooking.constants.AppPreferences
@@ -54,14 +55,29 @@ class MyBookingsActivity : AppCompatActivity(), MyBookingsAdapter.AppLinkClick {
     }
 
     override fun onAppLinkClicked(id: String, date: String) {
-        val myBookingVM  by viewModels<MyBookingsVM>()
-        val deleteBookinDO = DeleteBookingDO(id,date)
-        myBookingVM.deleteBookings(AppPreferences(this).token,deleteBookinDO)
-        myBookingVM.dapiCaller.observe(
-            this
-        ){data->
+        binding.deleteBookingLayout.isClickable = true
+        binding.deleteBookingLayout.isVisible = true
+        binding.deleteBookingLayout.isFocusable = true
+        binding.deletePopup.submit.setOnClickListener {
+            val myBookingVM  by viewModels<MyBookingsVM>()
+            val deleteBookinDO = DeleteBookingDO(id,date)
+            myBookingVM.deleteBookings(AppPreferences(this).token,deleteBookinDO)
+            myBookingVM.dapiCaller.observe(
+                this
+            ){data->
 
+            }
+            getMyBookings()
+            binding.deleteBookingLayout.isClickable = false
+            binding.deleteBookingLayout.isVisible = false
+            binding.deleteBookingLayout.isFocusable = false
         }
-        getMyBookings()
+
+        binding.deletePopup.cancelButton.setOnClickListener {
+            binding.deleteBookingLayout.isClickable = false
+            binding.deleteBookingLayout.isVisible = false
+            binding.deleteBookingLayout.isFocusable = false
+        }
+
     }
 }

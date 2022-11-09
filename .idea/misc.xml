@@ -27,6 +27,7 @@
         <entry key="app/src/main/res/layout/booked_succesfully_popup.xml" value="0.29244884787607645" />
         <entry key="app/src/main/res/layout/booked_succesfylly_popup.xml" value="0.3052586575459598" />
         <entry key="app/src/main/res/layout/bookings_sible_item.xml" value="0.3185121846943138" />
+        <entry key="app/src/main/res/layout/confirm_delete.xml" value="0.36135406494140626" />
         <entry key="app/src/main/res/layout/fragment_available_seats.xml" value="0.3496376811594203" />
         <entry key="app/src/main/res/layout/fragment_date.xml" value="0.3496376811594203" />
         <entry key="app/src/main/res/layout/my_bookings_single_item.xml" value="0.39378233000706064" />

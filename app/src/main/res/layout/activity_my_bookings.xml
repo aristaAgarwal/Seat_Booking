@@ -81,17 +81,34 @@
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/btn"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/red_border"
-        android:paddingHorizontal="60dp"
-        android:text="Close"
-        android:textStyle="bold" />
+        android:layout_marginBottom="50dp">
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/red_border"
+            android:paddingHorizontal="60dp"
+            android:text="Close"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/delete_booking_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:visibility="gone">
+
+        <include
+            android:id="@+id/delete_popup"
+            layout="@layout/confirm_delete" />
+    </RelativeLayout>
 
 </RelativeLayout>
