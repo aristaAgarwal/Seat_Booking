@@ -1,5 +1,6 @@
 package com.dishIT.seatbooking.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,9 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.seatbooking.R
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SeatAvailableDateAdapter(
     private var context: Context,
@@ -22,12 +26,21 @@ class SeatAvailableDateAdapter(
         private var view: View = v
         val date  = view.findViewById<TextView>(R.id.date)
         val checkbox = view.findViewById<CheckBox>(R.id.checkbox)
+        val day = view.findViewById<TextView>(R.id.day)
         fun bindItem(list: String){
             date.text = list
+            day.text = getDay(list)
             checkbox.setOnCheckedChangeListener { compoundButton, b ->
                 appLinkListener.onAppLinkClicked(b, list)
             }
         }
+
+    }
+    @SuppressLint("SimpleDateFormat")
+    fun getDay(date:  String): String{
+        val date1 = SimpleDateFormat("yyyy-MM-dd").parse(date)
+        val sdf = SimpleDateFormat("EEEE")
+        return sdf.format(date1!!)
 
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RACItemHolder {

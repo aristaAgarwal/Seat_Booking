@@ -2,6 +2,7 @@ package com.dishIT.seatbooking.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -30,19 +31,28 @@ class LoginActivity : AppCompatActivity() {
 
         binding.signUp.setOnClickListener {
             binding.signIn.isVisible = false
+            binding.seatBooking.isVisible = false
             binding.detail.isVisible = false
             binding.register.isVisible = true
             var username = binding.newName.text
             val empId = binding.empid.text
             val email = binding.email.text
             val pass = binding.newPassConf.text
-            registerAccount(username as String,empId as String,email as String,pass as String)
+            binding.registerBtn.setOnClickListener {
+                registerAccount(username,empId ,email ,pass )
+            }
         }
     }
 
-    fun registerAccount(username: String, empId: String, email: String, pass: String) {
-        val registerDO = RegisterAccount(email,username,empId,username, pass)
+    fun registerAccount(username: Editable, empId: Editable, email: Editable, pass: Editable) {
+        val registerDO = RegisterAccount(email.toString(),username.toString(),empId.toString(),username.toString(), pass.toString())
         val registerVM by viewModels<RegisterVM>()
+        registerVM.register(registerDO)
+        binding.signIn.isVisible = true
+        binding.detail.isVisible = true
+        binding.seatBooking.isVisible = true
+        binding.register.isVisible = false
+
     }
 
     fun getCredentials(){

@@ -58,7 +58,17 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(Intent(this, FeedbackActivity::class.java))
                     true
                 }
-                else -> false
+                R.id.nav_logout ->{
+                    AppPreferences(this).firstLaunch = true
+                    AppPreferences(this).token = ""
+                    finish()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    true
+                }
+                else -> {
+                    onBackPressed()
+                    false
+                }
 
             }
         }

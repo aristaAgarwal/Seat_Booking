@@ -50,6 +50,7 @@ class MyBookingsActivity : AppCompatActivity(), MyBookingsAdapter.AppLinkClick {
 
     private fun setOnClickListener() {
         binding.btn.setOnClickListener {
+            finish()
             startActivity(Intent(this, HomeActivity::class.java))
         }
     }
