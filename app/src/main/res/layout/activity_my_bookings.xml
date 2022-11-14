@@ -91,10 +91,10 @@
 
         <Button
             android:id="@+id/btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/red_border"
-            android:paddingHorizontal="60dp"
+            android:layout_marginHorizontal="30dp"
             android:text="Close"
             android:textStyle="bold" />
     </RelativeLayout>

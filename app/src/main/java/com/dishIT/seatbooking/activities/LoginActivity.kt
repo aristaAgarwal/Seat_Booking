@@ -1,9 +1,10 @@
 package com.dishIT.seatbooking.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.dishIT.seatbooking.constants.AppPreferences
@@ -59,13 +60,12 @@ class LoginActivity : AppCompatActivity() {
         val username = binding.name.text
         val password = binding.pass.text
         binding.btn.setOnClickListener {
+            Toast.makeText(this,"Authenticating",Toast.LENGTH_SHORT).show()
             authenticate(username.toString(), password.toString())
         }
     }
 
     fun authenticate(username: String, password: String) {
-        Log.e("jjvj","aa gaye hai  gaya")
-        Log.e("jjvj","$username $password")
         val loginCred = AuthenticationDO(password, username)
         val authenticate by viewModels<LoginViewModel>()
         authenticate.login(loginCred)
@@ -75,10 +75,10 @@ class LoginActivity : AppCompatActivity() {
                 data->
             if(data is AuthenticationResponse){
                 AppPreferences(this).token  = "Bearer "+data.id_token
-                Log.e("jjvj","ho gaya")
                 getAccount()
                 AppPreferences(this).firstLaunch = false
                 finish()
+                startActivity(Intent(this, HomeActivity::class.java))
             }
         }
     }
