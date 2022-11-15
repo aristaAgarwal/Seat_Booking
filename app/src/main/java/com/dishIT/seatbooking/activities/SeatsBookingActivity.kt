@@ -46,6 +46,9 @@ class SeatsBookingActivity : AppCompatActivity() {
 
     private fun init(){
         token = AppPreferences(this).token
+        binding.moreDays.setOnCheckedChangeListener { compoundButton, b ->
+            binding.endsDate.isVisible = b
+        }
         binding.backArrow.setOnClickListener {
             onBackPressed()
         }
@@ -59,6 +62,16 @@ class SeatsBookingActivity : AppCompatActivity() {
         binding.endDate.setOnClickListener {
             getToDate(binding.endDate)
 
+        }
+        binding.floorMap.setOnClickListener {
+            binding.floorMapView.isVisible =true
+            binding.floorMapView.isClickable =true
+            binding.floorMapView.isFocusable =true
+        }
+        binding.map.close.setOnClickListener {
+            binding.floorMapView.isVisible =false
+            binding.floorMapView.isClickable =false
+            binding.floorMapView.isFocusable =false
         }
         binding.checkBtn.setOnClickListener {
 
