@@ -1,12 +1,9 @@
 package com.dishIT.seatbooking.activities
 
 import android.content.Intent
-import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
-import androidx.core.view.isEmpty
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dishIT.seatbooking.adapter.MyBookingsAdapter
@@ -63,11 +60,7 @@ class MyBookingsActivity : AppCompatActivity(), MyBookingsAdapter.AppLinkClick {
             val myBookingVM  by viewModels<MyBookingsVM>()
             val deleteBookinDO = DeleteBookingDO(id,date)
             myBookingVM.deleteBookings(AppPreferences(this).token,deleteBookinDO)
-            myBookingVM.dapiCaller.observe(
-                this
-            ){data->
 
-            }
             getMyBookings()
             binding.deleteBookingLayout.isClickable = false
             binding.deleteBookingLayout.isVisible = false

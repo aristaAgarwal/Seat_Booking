@@ -64,6 +64,7 @@ class AvailableSeats : AppCompatActivity(), SeatAvailableDateAdapter.AppLinkClic
         binding.successPopup.btn.setOnClickListener {
             setPopup(false, binding.bookingConfirmLayout)
             startActivity(Intent(this,HomeActivity::class.java))
+            finish()
         }
         binding.requestPopup.cross.setOnClickListener {
             setPopup(false, binding.requestSeatLayout)
