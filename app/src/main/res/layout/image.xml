@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="#F8F8F9">
@@ -11,20 +12,26 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"/>
 
-    <ImageView
+    <com.dishIT.seatbooking.widgets.TouchImageView
+        android:id="@+id/office_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/floor2" />
 
     <Button
         android:id="@+id/close"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:layout_marginHorizontal="30dp"
+        android:layout_alignBottom="@id/office_map"
         android:layout_centerHorizontal="true"
-        android:text="close"
-        android:background="@drawable/red_border"/>
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="-80dp"
+        android:background="@drawable/red_border"
+        android:text="close" />
 
 
 </RelativeLayout>
