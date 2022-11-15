@@ -35,6 +35,7 @@ class SeatsBookingActivity : AppCompatActivity() {
     var selectedSeat: Int? = null
     private var selectedToDate by Delegates.notNull<Long>()
     private var maxToDate by Delegates.notNull<Long>()
+    var endDate: String? = null
     lateinit var token :String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +48,8 @@ class SeatsBookingActivity : AppCompatActivity() {
     private fun init(){
         token = AppPreferences(this).token
         binding.moreDays.setOnCheckedChangeListener { compoundButton, b ->
+            if (!b)
+                endDate = null
             binding.endsDate.isVisible = b
         }
         binding.backArrow.setOnClickListener {
@@ -76,7 +79,9 @@ class SeatsBookingActivity : AppCompatActivity() {
         binding.checkBtn.setOnClickListener {
 
             val intent  = Intent(this, AvailableSeats::class.java)
-            intent.putExtra("endDate",binding.endDate.text as String)
+            if (endDate.isNullOrEmpty())
+                endDate = binding.startDate.text as String
+            intent.putExtra("endDate",endDate)
             intent.putExtra("startDate", binding.startDate.text as String)
             intent.putExtra("floor",selectedFloor)
             intent.putExtra("seat",selectedSeat!!)
@@ -242,6 +247,7 @@ class SeatsBookingActivity : AppCompatActivity() {
                 val myFormat = "yyyy-MM-dd"
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 textView.text = sdf.format(cal.time)
+                endDate = sdf.format(cal.time)
             },
             Calendar.getInstance().get(Calendar.YEAR),
             Calendar.getInstance().get(Calendar.MONTH),
